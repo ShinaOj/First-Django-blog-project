@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div style="margin-top: 20px;">
+
+      
+
+        <form action="{% url 'form-create' %}" method='post'>
+            {% csrf_token %}
+            <label for="cate">Category</label><br>
+            <input type="text" name="category" id=""/>
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+
+    <h3>add tags form</h3>
+        <form action=" {% url 'tag-form-create' %}" method="post">
+            {% csrf_token %}
+            {{tag_form.as_table}}
+            <input type="submit" value="Submit">
+        </form>
+        <br>
+        <h3>Author create form</h3>
+        <form action="{% url 'author_create' %}" method="post">
+            {% csrf_token %}
+            {{auth_form.as_table}}
+            <input type="submit" value="Submit">
+        </form>
+    </div> 
+</body>
+</html>

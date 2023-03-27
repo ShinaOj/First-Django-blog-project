@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block content%}
+<div id="main" class="s-content_main large-8 coloumn">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{post_form}}
+        <input type="submit" valur="Add post" class="btn btn -- primary btn-wide btn--">
+        </form>
+</div>
+
+{% endblock content%}

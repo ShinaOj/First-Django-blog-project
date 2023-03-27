@@ -1,0 +1,87 @@
+{%extends 'base.html'%}
+{% load static %}
+
+
+<!-- Content
+    ================================================== -->
+
+{%block content%}
+<div id="main" class="s-content__main large-8 column">
+    {% for post in posts_object %}
+    <article class="entry">
+        <header class="entry__header">
+
+            <h2 class="entry__title h1">
+                <a href="{% url 'detail' post.id %}" title="">{{post.title}}</a>
+            </h2>
+
+            <div class="entry__meta">
+                <ul>
+                    <li>{{post.create_at|date:"M d Y"}}</li>
+                    <li><a href="#" title="" rel="category tag">{{post.category.name}}</a></li>
+                    <li>{{post.author.name}}</li>
+                </ul>
+            </div>
+
+        </header>
+
+        <div class="entry__content">
+            <p>
+                {{post.article|truncatewords:10}}
+            </p>
+        </div>
+
+    </article> <!-- end entry -->
+    {% endfor %}
+
+
+</div> <!-- end main -->
+{%endblock%}
+
+
+{%block sidebar%}
+<div id="sidebar" class="s-content__sidebar large-4 column">
+
+    <div class="widget widget--search">
+        <h3 class="h6">Search</h3>
+        <form action="#">
+            <input type="text" value="Search here..." onblur="if(this.value == '') { this.value = 'Search here...'; }"
+                onfocus="if (this.value == 'Search here...') { this.value = ''; }" class="text-search">
+            <input type="submit" value="" class="submit-search">
+        </form>
+    </div>
+
+    <div class="widget widget--categories">
+        <h3 class="h6">Categories.</h3>
+        <ul>
+            {% for cat in category_obj %}
+            <li><a href="#0" title="">{{cat.name}}</a> ({{cat.post_set.count}})</li>
+            {%endfor%}
+        </ul>
+    </div>
+
+
+    <div class="widget widget_tags">
+        <h3 class="h6">Post Tags.</h3>
+
+        <div class="tagcloud group">
+            {% for tg in tagg %}
+            <a href="#0">{{tg.name}}</a>
+            {%endfor%}
+
+        </div>
+    </div>
+
+    <div class="widget widget_popular">
+        <h3 class="h6">Popular Post.</h3>
+
+        <ul class="link-list">
+            <li><a href="#">Sint cillum consectetur voluptate.</a></li>
+            <li><a href="#">Lorem ipsum Ullamco commodo.</a></li>
+            <li><a href="#">Fugiat minim eiusmod do.</a></li>
+        </ul>
+    </div>
+
+</div> <!-- end sidebar -->
+
+{%endblock sidebar%}
